@@ -1,0 +1,27 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853 
+ * 
+ * 普通自旋锁
+ * 
+ * 缺点：不可再重入
+ *
+ */
+public class SpinLock implements MyLock {
+	private static AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+
+	@Override
+	public void lock() {
+		while (!atomicReference.compareAndSet(null, Thread.currentThread())) {
+
+		}
+	}
+
+	@Override
+	public void unLock() {
+		atomicReference.compareAndSet(Thread.currentThread(), null);
+	}
+}

@@ -1,0 +1,47 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853
+ *
+ */
+public class MCSLock implements MyLock {
+	private static class MCSNode {
+		public boolean isLocked = true;
+		public MCSNode next;
+	}
+
+	private MCSNode queue;
+	private AtomicReferenceFieldUpdater<MCSLock, MCSNode> updater = AtomicReferenceFieldUpdater
+			.newUpdater(MCSLock.class, MCSNode.class, "queue");
+	private AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+	private ThreadLocal<MCSNode> local = new ThreadLocal<MCSNode>();
+
+	@Override
+	public void lock() {
+		MCSNode currentNode = new MCSNode();
+		MCSNode preNode = updater.getAndSet(this, currentNode);
+		local.set(currentNode);
+		if (preNode != null) {
+			preNode.next = currentNode;
+			while (currentNode.isLocked) {
+
+			}
+		}
+	}
+
+	@Override
+	public void unLock() {
+		MCSNode currentNode = local.get();
+		MCSNode nextNode = currentNode.next;
+		if (nextNode == null) {
+			while (nextNode == null) {
+
+			}
+		} else {
+			nextNode.isLocked = false;
+		}
+	}
+}

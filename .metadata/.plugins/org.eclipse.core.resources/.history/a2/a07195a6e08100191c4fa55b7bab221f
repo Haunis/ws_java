@@ -1,0 +1,20 @@
+package com.aaa.test;
+
+public class AAAmain {
+	public static void main(String[] args) {
+		doTest();
+	}
+
+	private static int doTest() {
+		int i = 100;
+		try {
+			i = 200;
+			return i;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			System.out.println("this is finaley");
+		}
+		return 300;
+	}
+}

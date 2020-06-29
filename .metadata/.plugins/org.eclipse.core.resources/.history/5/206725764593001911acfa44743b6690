@@ -1,0 +1,18 @@
+package com.jiage.spinlock;
+
+public class CLHLock implements MyLock {
+	private static class CLHLockNode {
+
+	}
+
+	@Override
+	public void lock() {
+
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

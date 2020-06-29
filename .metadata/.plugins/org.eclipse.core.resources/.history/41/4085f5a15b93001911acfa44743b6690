@@ -1,0 +1,23 @@
+package com.jiage.spinlock;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853
+ *
+ */
+public class MCSLock implements MyLock {
+	private static class MSCLockNode {
+		public boolean isLocked = false;
+		public MSCLockNode next;
+	}
+
+	@Override
+	public void lock() {
+
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

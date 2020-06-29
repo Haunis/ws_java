@@ -1,0 +1,18 @@
+package com.fanxing
+
+class Boxx<in T, E> {
+	fun copy(from: Array<E>, to: Array<E>) {
+		for (index in from.indices) {
+			to[index] = from[index]
+		}
+	}
+}
+
+fun main(args: Array<String>) {
+	val box = Boxx<String, String>()
+//	val from = listOf("aaa","bbb","ccc")
+	val from = arrayOf("aaa","bbb","ccc")
+	val to :Array<String>
+	
+	box.copy(from,to)
+}

@@ -1,0 +1,11 @@
+package com.faxing;
+
+public class MyNumber<E> {
+	public  void setNum(E e) throws Exception {
+		if(e instanceof Integer) {
+			
+		}else {
+			throw new Exception("not Integer");
+		}
+	}
+}

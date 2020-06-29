@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.le.it.run&apos; to &apos;com.let_it_run&apos;&#x0A;- Original project: &apos;Kotlin&apos;&#x0A;- Original element: &apos;Kotlin/src/com.le.it.run&apos;&#x0A;- Renamed element: &apos;Kotlin/src/com.let_it_run&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.le.it.run&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.le.it.run" name="com.let_it_run" qualified="false" references="true" stamp="1556604115010" textual="false" version="1.0"/>
+</session>

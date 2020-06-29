@@ -1,0 +1,30 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+public class CLHLock implements MyLock {
+	private static class CLHLockNode {
+		public boolean locked = false;
+	}
+
+	private CLHLockNode tail;
+	private ThreadLocal<CLHLockNode> local = new ThreadLocal<CLHLockNode>();
+	private AtomicReferenceFieldUpdater<CLHLock, CLHLockNode> updater = AtomicReferenceFieldUpdater
+			.newUpdater(CLHLock.class, CLHLockNode.class, "tail");
+
+	@Override
+	public void lock() {
+		CLHLockNode node = new CLHLockNode();
+		local.set(node);
+
+		CLHLockNode preNode = new CLHLockNode();
+		updater.getAndSet(this, node);
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

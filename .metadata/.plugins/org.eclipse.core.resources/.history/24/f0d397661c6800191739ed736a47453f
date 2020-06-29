@@ -1,0 +1,66 @@
+package com.delegate
+
+import kotlin.reflect.KProperty
+import kotlin.properties.ReadOnlyProperty
+
+class ResourceID<T> {
+	companion object {
+		val image_id = ResourceID<Int>()
+		val text_id = ResourceID<Int>()
+	}
+}
+
+class MyUI {
+	val image by bindResource(ResourceID.image_id)
+}
+
+fun <T> bindResource(id: ResourceID<T>): ResourceLoader<T> {
+	val resourceLoader = ResourceLoader(id)
+	return resourceLoader
+}
+
+class ResourceLoader<T>(id: ResourceID<T>) {
+	operator fun provideDelegate(thisRef: MyUI, prop: KProperty<*>): ReadOnlyProperty<MyUI, T> {
+		if (checkProperty()) {
+			return RopIml()
+		} else {
+			throw Exception("Error ${prop.name}")
+		}
+
+	}
+
+
+	fun checkProperty() {
+
+	}
+}
+
+class RopIml<T> : ReadOnlyProperty<MyUI, T> {
+
+	override fun getValue(thisRef: MyUI, property: KProperty<*>): T {
+		if (property.name.equals("image"))
+//            return property.name+"  "+id.image_id
+			return 1
+		else
+//            return property.name+"  "+id.text_id
+			return 2
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

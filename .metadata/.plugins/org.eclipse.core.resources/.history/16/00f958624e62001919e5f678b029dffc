@@ -1,0 +1,11 @@
+package com.faxing;
+
+
+public class MyNumber {
+	public <T extends Integer>MyNumber(T t) {
+		
+	}
+//	public <T extends Integer>MyNumber getInstance(T t) {
+//		return new MyNumber();
+//	}
+}

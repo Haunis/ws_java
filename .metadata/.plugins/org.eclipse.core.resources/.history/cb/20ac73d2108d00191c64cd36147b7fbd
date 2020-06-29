@@ -1,0 +1,24 @@
+package com.jiage.wait;
+
+public class MyThread extends Thread {
+	Thread t = new Thread();
+
+	@Override
+	public void run() {
+		synchronized (this) {
+			fun();
+		}
+	}
+
+	public void fun() {
+		synchronized (this) {
+			try {
+				System.out.println("fun excute()");
+				wait();
+				System.out.println("finish()");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+package com.jiage.wait;
+
+public class MyThread extends Thread {
+	@Override
+	public void run() {
+		synchronized (this) {
+			System.out.println(33);
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

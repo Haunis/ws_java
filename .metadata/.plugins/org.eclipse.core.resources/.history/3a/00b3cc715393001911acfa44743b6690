@@ -1,0 +1,49 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+public class CLHLock implements MyLock {
+	private static class CLHLockNode {
+		// 注意用volatile修饰，否则unLock()currentNode.locked = false；不能同步到lock()中
+		public volatile boolean locked = true;
+	}
+
+	private volatile CLHLockNode tail;
+	private ThreadLocal<CLHLockNode> local = new ThreadLocal<CLHLockNode>();
+	private AtomicReferenceFieldUpdater<CLHLock, CLHLockNode> updater = AtomicReferenceFieldUpdater
+			.newUpdater(CLHLock.class, CLHLockNode.class, "tail");
+	private AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+	private int count = 0;
+
+	@Override
+	public void lock() {
+		if (atomicReference.get() == Thread.currentThread()) {
+			count++;
+			return;
+		}
+
+		CLHLockNode node = new CLHLockNode();
+		local.set(node);
+
+		CLHLockNode preNode = updater.getAndSet(this, node);// 自旋
+		System.out.println(Thread.currentThread().getName + " preNode:" + preNode);
+		if (preNode != null) {
+			while (preNode.locked) {
+			}
+		}
+
+		atomicReference.compareAndSet(null, Thread.currentThread());
+	}
+
+	@Override
+	public void unLock() {
+		if (count > 0) {
+			count--;
+		} else {
+			atomicReference.compareAndSet(Thread.currentThread(), null);
+			CLHLockNode currentNode = local.get();
+			currentNode.locked = false;
+		}
+	}
+}

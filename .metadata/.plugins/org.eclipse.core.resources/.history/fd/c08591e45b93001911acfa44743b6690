@@ -1,0 +1,28 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853
+ *
+ */
+public class MCSLock implements MyLock {
+	private static class MSCLockNode {
+		public boolean isLocked = false;
+		public MSCLockNode next;
+	}
+
+	private MCSNode quene;
+	private AtomicReferenceFieldUpdater<MCSLock, MSCLockNode> updater=AtomicReferenceFieldUpdater.newUpdater(MCSLock.class, MSCLockNode.class, fieldName)
+
+	@Override
+	public void lock() {
+
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

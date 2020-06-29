@@ -1,0 +1,18 @@
+package com.jiage.spinlock;
+/**
+ * 公平锁
+ *
+ */
+public class TicketLock implements MyLock {
+
+	@Override
+	public void lock() {
+		
+	}
+
+	@Override
+	public void unLock() {
+		
+	}
+	
+}

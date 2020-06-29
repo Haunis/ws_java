@@ -1,0 +1,31 @@
+package com.enum_demo
+
+enum class Color {
+	RED,
+	BLUE,
+	GREEN
+
+}
+
+inline fun <reified T : Enum<T>> printAllValues() {
+	val colors: Array<T> = enumValues<T>()
+	val result: String = colors.joinToString { it.name }
+	println("result : ${result}")
+}
+
+fun main(args: Array<String>) {
+	val color = Color.RED
+	val colors: Array<Color> = Color.values()
+
+	println("colors: ${colors}")
+	println(Color.valueOf("RED"))
+	println("color.name = ${color.name}")
+	println("color.ordinal = ${color.ordinal}")
+
+	printAllValues<Color>()//RED, BLUE, GREEN
+
+	for (item in colors) {
+		println("item : ${item}")
+	}
+}
+

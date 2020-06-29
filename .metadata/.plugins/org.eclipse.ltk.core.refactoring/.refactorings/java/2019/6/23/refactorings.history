@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CountRunnable.java&apos; to &apos;com.jiage.atom.CountRunnable.java&apos;&#x0A;- Original project: &apos;Java&apos;&#x0A;- Destination element: &apos;com.jiage.atom.CountRunnable.java&apos;&#x0A;- Original element: &apos;com.jiage.atom.CountRunnable.java&apos;" description="Copy compilation unit" destination="/src&lt;com.jiage.atom{CountRunnable.java" element1="/src&lt;com.jiage.atom{CountRunnable.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1559736911981" units="1" version="1.0"/>
+</session>

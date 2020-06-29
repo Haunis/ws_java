@@ -1,0 +1,7 @@
+package com.aaa.test;
+
+public class AAAmain {
+	public static void main(String[] args) throws InterruptedException {
+		
+	}
+}

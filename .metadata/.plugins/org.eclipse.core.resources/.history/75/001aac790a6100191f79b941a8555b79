@@ -1,0 +1,51 @@
+package com.faxing;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 参考： http://www.importnew.com/24029.html
+ * 
+ * 通配符：使用在类的后面，如：List<? extends Fruit>
+ * 
+ * 边界符：使用在方法返回值前面，如： private <T extends Fruit> void getFruit(List<T> list){}
+ * 
+ * 类型擦除的处理： 使用边界符
+ * 
+ * 因为泛型擦除的存在，所以要注意以下问题： 1. java里没有泛型数组
+ *
+ */
+public class Amain<T> {
+	public static void main(String[] args) {
+		List<Apple> appleList = new ArrayList<Apple>();
+		List<Orange> orangeList = new ArrayList<Orange>();
+		appleList.add(new Apple());
+
+		Utils<Fruit> utils = new Utils<Fruit>();
+//		utils.getFirst(appleList);//编译通不过
+		Fruit fruit = utils.getFirst2(appleList);// 使用通配符即可
+		System.out.println("fruit2 = " + fruit);
+
+		fruit = utils.getFirst3(appleList);// 使用边界符亦可
+		System.out.println("fruit3 = " + fruit);
+
+		System.out.println("<? extends Fruit> 只能get ，不能put ---------------------------------");
+		List<? extends Fruit> list = new ArrayList<Apple>();
+		list.add(null);
+//		list.add(new Apple());//编译不过
+
+		System.out.println("<? super Apple> ---------------------------------");
+		List<? super Apple> listSuper = new ArrayList<Apple>();
+		listSuper.add(new Apple());
+//		listSuper.add( new Fruit());//编译不过
+		Apple apple = (Apple) listSuper.get(0);
+		System.out.println(apple);
+
+		// java里没有泛型数组
+//		List<Integer>[] arrayOfLists = new List<Integer>[2]; 
+		
+		Object[] strings = new String[2];
+		strings[0]="a";
+
+	}
+}

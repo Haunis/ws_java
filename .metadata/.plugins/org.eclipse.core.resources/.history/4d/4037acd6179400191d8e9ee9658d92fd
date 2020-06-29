@@ -1,0 +1,88 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853
+ *
+ */
+public class MCSLock implements MyLock {
+	private static class MCSNode {
+		public volatile boolean isLocked = true;// 使用volatile修饰，否则unLock()nextNode.isLocked = false；不能同步到下个线程的lock()中
+		public volatile MCSNode next;
+	}
+
+	private volatile MCSNode queue;
+	private AtomicReferenceFieldUpdater<MCSLock, MCSNode> updater = AtomicReferenceFieldUpdater
+			.newUpdater(MCSLock.class, MCSNode.class, "queue");
+	private ThreadLocal<MCSNode> local = new ThreadLocal<MCSNode>();
+
+	private AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+	private int count = 0;// 可重入锁计数器
+
+	@Override
+	public void lock() {
+//		System.out.println(Thread.currentThread().getName() + " 1111lock");
+//		System.out.println("get : " + atomicReference.get() + "  ,current: " + Thread.currentThread());
+		if (atomicReference.get() == Thread.currentThread()) {
+//			System.out.println(Thread.currentThread().getName() + " 第二次进");
+			count++;
+			return;
+		}
+		MCSNode currentNode = new MCSNode();
+		MCSNode preNode = updater.getAndSet(this, currentNode);
+//		System.out.println(Thread.currentThread().getName() + " currentNode: " + currentNode);
+//		System.out.println(Thread.currentThread().getName() + " preNode: " + preNode);
+
+		local.set(currentNode);
+		if (preNode != null) {
+			preNode.next = currentNode;
+			while (currentNode.isLocked) {
+
+			}
+		}
+		Thread t = atomicReference.get();
+		System.out.println(Thread.currentThread().getName() + ",t =" + t);
+//		Thread t2 = atomicReference.get();
+//		System.out.println(Thread.currentThread().getName() + ",t =" + t2);
+		boolean flag = atomicReference.compareAndSet(null, Thread.currentThread());
+
+//		atomicReference.getAndSet(Thread.currentThread());
+//		while(!atomicReference.compareAndSet(null, Thread.currentThread())) {
+//			
+//		}
+//		System.out.println(Thread.currentThread().getName() + " 2222lock ," + flag);
+
+	}
+
+	@Override
+	public void unLock() {
+//		System.out.println(Thread.currentThread().getName() + " unLock");
+		if (count > 0) {
+			count--;
+			return;
+		}
+		MCSNode currentNode = local.get();
+		MCSNode nextNode = currentNode.next;
+		if (nextNode == null) {
+			System.out.println("nextNode = null");
+			if (updater.compareAndSet(this, currentNode, null)) {
+				atomicReference.compareAndSet(Thread.currentThread(), null);
+				System.out.println("set currentnode null");
+				return;
+			}
+			while (currentNode.next == null) {
+				System.out.println(1111);
+			}
+			currentNode.next.isLocked = false;
+			atomicReference.compareAndSet(Thread.currentThread(), null);
+			System.out.println("1 unlock");
+		} else {
+			nextNode.isLocked = false;
+			boolean flag = atomicReference.compareAndSet(Thread.currentThread(), null);
+//			atomicReference.getAndSet(null);
+//			System.out.println(Thread.currentThread().getName() + ",2 unlock  : " + flag);
+		}
+	}
+}

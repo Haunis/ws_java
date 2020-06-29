@@ -1,0 +1,26 @@
+package com.faxing;
+
+public class MyNumber<T extends Integer, E extends Float> {
+	private T tValue;
+	private E eValue;
+	private Number number;
+
+	public <X extends Integer> void setNumber(X x) {
+		this.number = x;
+	}
+
+	public <X extends Float> void setNumber(X x) {
+		this.number = x;
+	}
+
+	public Number getNumber() {
+		return number;
+	}
+
+	public static void main(String[] args) {
+		MyNumber<Integer, Float> number = new MyNumber<Integer, Float>();
+		number.setNumber(3.3f);
+
+		System.out.println(number.getNumber());
+	}
+}

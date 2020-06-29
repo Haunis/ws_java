@@ -1,0 +1,9 @@
+package com.jiage.spinlock;
+
+public class MainDebugReentractLock {
+	
+	public static void main(String[] args) {
+		System.out.println("run");
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.aaa.test;
+
+public class AAAmain {
+	public static void main(String[] args) {
+		final boolean flag = true;
+		new Thread(() -> {
+			try {
+				Thread.sleep(3);
+				flag = false;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}).start();
+		while (flag) {
+
+		}
+		System.out.println("this is end");
+	}
+}

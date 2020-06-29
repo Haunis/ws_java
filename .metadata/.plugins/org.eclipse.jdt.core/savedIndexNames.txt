@@ -1,0 +1,10 @@
+INDEX VERSION 1.131+/home/haunis/ws_java/.metadata/.plugins/org.eclipse.jdt.core
+3774993770.index
+1214794935.index
+2234423410.index
+836991322.index
+432251852.index
+3367829224.index
+4090297226.index
+218580872.index
+3689772550.index

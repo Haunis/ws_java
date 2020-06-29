@@ -1,0 +1,30 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+public class ReentrantSpinLock {
+	private AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+	private int count;
+
+	public void lock() {
+		Thread current = Thread.currentThread();
+		if (atomicReference.get() == current) {
+			count++;
+			return;
+		}
+		while (!atomicReference.compareAndSet(null, current)) {
+
+		}
+	}
+
+	public void unLock() {
+		if (atomicReference.get() == Thread.currentThread()) {
+			if (count > 0) {
+				count--;
+			} else {
+				atomicReference.compareAndSet(Thread.currentThread(), null);
+
+			}
+		}
+	}
+}

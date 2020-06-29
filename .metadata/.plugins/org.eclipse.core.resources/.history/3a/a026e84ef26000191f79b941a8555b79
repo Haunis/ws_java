@@ -1,0 +1,8 @@
+package com.fanxing
+
+/**
+泛型类
+ */
+class Box<T>(t: T) {
+	var value = t;
+}

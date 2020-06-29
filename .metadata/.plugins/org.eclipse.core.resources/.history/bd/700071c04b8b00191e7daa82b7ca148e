@@ -1,0 +1,33 @@
+package com.jiage.atom.field;
+
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
+public class AtomicIntegerFieldUpdaterDemo {
+	public static class Candidate {
+		int id;
+		volatile int score;
+	}
+
+	public static class Game {
+		int id;
+		volatile String name;
+
+		public Game(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+
+		@Override
+		public String toString() {
+			return "Game{" + "id=" + id + ", name='" + name + '\'' + '}';
+		}
+	}
+
+	static AtomicIntegerFieldUpdater<Candidate> atIntegerUpdater = AtomicIntegerFieldUpdater.newUpdater(Candidate.class,
+			"score");
+
+	static AtomicReferenceFieldUpdater<Game, String> atRefUpdate = AtomicReferenceFieldUpdater.newUpdater(Game.class,
+			String.class, "name");
+
+}

@@ -1,0 +1,8 @@
+package com.jiage.window;
+
+public class MainDemo {
+	public static void main(String[] args) {
+		WindowTest win = new WindowTest();
+		win.show();
+	}
+}

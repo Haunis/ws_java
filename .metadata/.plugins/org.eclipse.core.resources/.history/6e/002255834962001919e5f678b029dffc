@@ -1,0 +1,30 @@
+package com.faxing;
+
+import java.util.List;
+
+public class Utils<T> {
+	public T getFirst(List<T> list) {
+		return list.get(0);
+	}
+
+	// 通配符。以Fruit为例，表示可以接受List<Apple>,List<Orange>,List<Fruit>
+	public T getFirst2(List<? extends T> list) {
+		return list.get(0);
+	}
+
+	// 边界符
+	@SuppressWarnings("hiding")
+	public <T extends Fruit> T getFirst3(List<T> list) {
+		return list.get(0);
+	}
+
+	public T put(List<T> list, T t) {
+		list.add(t);
+		return t;
+	}
+
+	public T put2(List<? super T> list, T t) {
+		list.add(t);
+		return t;
+	}
+}

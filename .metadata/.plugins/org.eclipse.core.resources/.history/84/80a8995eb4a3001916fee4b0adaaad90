@@ -1,0 +1,10 @@
+package com.jiage.window;
+
+import java.awt.Toolkit;
+
+public class Utils {
+	public static int getScreenWidth() {
+		int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+		return width;
+	}
+}

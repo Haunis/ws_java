@@ -1,0 +1,10 @@
+package com.object_declarations
+
+interface TestInterface {}
+open class Person(age: Int) {
+	open val age = age;
+}
+
+val TestPerson: Person = object : Person(17), TestInterface {
+	override val age = 15;
+}

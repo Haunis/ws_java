@@ -1,0 +1,31 @@
+package com.jiage.window;
+
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class WindowTest extends Frame {
+	private WindowAdapter mAdapter = new WindowAdapter() {
+		
+	}; 
+	private static final long serialVersionUID = 992098650056266773L;
+
+	public void launchFrame() {
+		initView();
+		registerListener();
+		
+	}
+	private void initView() {
+		setSize(500, 400);// 定义窗口大小
+		setLocation(100, 200);// 定义窗口位置
+		setVisible(true);// 定义是否可见，true为不可见
+	}
+	private void registerListener() {
+		addWindowListener(new WindowAdapter() {// 窗口监听
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+}

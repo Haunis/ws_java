@@ -1,0 +1,33 @@
+package com.jiage.reflect;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
+import com.jiage.reflect.Wrapper.ClientID;
+
+public class Main {
+	public static void main(String[] args) {
+
+		System.out.println("init : " + init());
+
+	}
+
+	public static boolean init() {
+		try {
+			Field[] fields = Wrapper.ClientID.class.getFields();
+			ClientID clientID = new Wrapper.ClientID();
+			ArrayList<String> list = new ArrayList<String>();
+			for (Field field : fields) {
+				System.out.println("name : " + field.getName() + "\tvalue : " + field.get(new ClientID()));
+
+				list.add((String) field.get(clientID));
+			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+}

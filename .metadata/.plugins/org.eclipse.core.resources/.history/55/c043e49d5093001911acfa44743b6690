@@ -1,0 +1,49 @@
+package com.jiage.spinlock;
+
+public class MainTest {
+	public static void main(String[] args) {
+//		System.out.println("test SpinLock---------------------");
+//		testLock(new SpinLock());
+//
+//		System.out.println("test ReentrantSpinLock------------");
+//		testLock(new ReentrantSpinLock());
+//
+//		System.out.println("test TicketLock------------");
+//		testLock(new TicketLock());
+
+		System.out.println("test CLHLock------------");
+		testLock(new CLHLock());
+	}
+
+	// 测试自旋锁
+	private static void testLock(MyLock lock) {
+		Thread[] threads = new Thread[10];
+		for (int i = 0; i < 10; i++) {
+			threads[i] = new Thread(() -> {
+				try {
+					lock.lock();
+					if (!(lock instanceof SpinLock)) {// SpinLock不是可重入锁
+						lock.lock();
+					}
+					Thread.sleep(1);
+					System.out.println(Thread.currentThread().getName() + " run");
+					lock.unLock();
+					if (!(lock instanceof SpinLock)) {
+						lock.unLock();
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+			threads[i].start();
+		}
+
+		for (Thread t : threads) {
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

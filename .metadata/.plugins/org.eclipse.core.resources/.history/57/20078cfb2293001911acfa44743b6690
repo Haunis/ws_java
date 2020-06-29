@@ -1,0 +1,33 @@
+package com.jiage.spinlock;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+/**
+ * 可重入自旋锁
+ */
+public class ReentrantSpinLock implements MyLock {
+	private AtomicReference<Thread> atomicReference = new AtomicReference<Thread>();
+	private int count;
+
+	public void lock() {
+		Thread current = Thread.currentThread();
+		if (atomicReference.get() == current) {
+			count++;
+			return;
+		}
+		while (!atomicReference.compareAndSet(null, current)) {
+
+		}
+	}
+
+	public void unLock() {
+		// 因为这些线程使用的是一个lock，所以当前线程调用unLock()才进行下步操作
+		if (atomicReference.get() == Thread.currentThread()) {
+			if (count > 0) {
+				count--;
+			} else {
+				atomicReference.compareAndSet(Thread.currentThread(), null);
+			}
+		}
+	}
+}

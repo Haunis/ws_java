@@ -1,0 +1,30 @@
+package com.aaa.test;
+
+public class AAAmain {
+	static boolean flag = true;
+
+	public static void main(String[] args) throws InterruptedException {
+
+		final Thread t1 = new Thread(() -> {
+			try {
+				Thread.sleep(100);
+				flag = false;
+				System.out.println("t1 end");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		Thread t2 = new Thread(() -> {
+			while (flag) {
+//				System.out.println("true");
+			}
+			System.out.println("t2 end");
+		});
+		t1.start();
+		t2.start();
+
+		t1.wait();//不持有锁t1，所以不是t1锁monitor的所有者
+		System.out.println("main  end");
+	}
+}

@@ -1,0 +1,28 @@
+package com.aaa.test;
+
+public class AAAmain {
+	static boolean flag = true;
+
+	public static void main(String[] args) {
+
+		final Thread t1 = new Thread(() -> {
+			try {
+				Thread.sleep(3);
+				flag = false;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		Thread t2 = new Thread(() -> {
+			while (flag) {
+//				System.out.println("true");
+			}
+			System.out.println("thread end flag ");
+		});
+		t1.start();
+		t2.start();
+
+		System.out.println("this is end");
+	}
+}

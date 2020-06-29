@@ -1,0 +1,91 @@
+package com.object_declarations
+
+/*
+ 对象表达式：
+ 匿名对象只可以用在本地和私有作用域。如果匿名对象作为公有函数的返回类型或者用作公有属性的话，那么该函数或者属性
+ 的实际类型是匿名对象的超类型--如果没有声明任何超类型就默认是Any，在匿名对象中添加的成员将无法访问
+ 
+ 
+ 
+ */
+
+//对象表达式-----------------------------------------------------------
+interface TestInterface {
+	fun eat()
+}
+
+open class Person(age: Int) {
+	open val age = age;
+	private fun privateFun() = object {
+		val x: String = "privateFun"
+	}
+
+	public fun publicFun() = object {
+		val x: String = "publicFun"
+	}
+
+	fun foo() {
+		println("person foo : ${privateFun().x}")
+//		println(publicFun().x)//error  匿名对象只可以用在本地和私有作用域
+	}
+}
+
+val PersonExpression: Person = object : Person(17), TestInterface {
+	override val age = 15;
+	override fun eat() {
+		println("PersonExpression run")
+	}
+
+	fun expressionFoo() {
+
+	}
+}
+
+//对象声明-----------------------------------------------------------
+object Site {
+	var url: String = ""
+	var name: String = "Baidu"
+}
+
+fun main(args: Array<String>) {
+	println("对象表达式--------------------------------------")
+//	val personExpression = PersonExpression()//erron;不可以这样实例化，这样会被当做
+	PersonExpression.foo()//默认访问父类Person的foo
+//	PersonExpression.expressionFoo();//error;匿名对象只可用在本地；用作公有属性的话，默认访问超类，不可访问匿名对象内定义的成员
+	println("PersonExpression.age=${PersonExpression.age}")//默认访问父类Person的age
+
+	val test = object {
+		val age = 33
+		val name = "lee"
+		fun foo() {
+			println("test foo()")
+		}
+	}
+	println("test.name=${test.name}")
+	test.foo()
+
+
+	println("对象生命--------------------------------------")
+	val site1 = Site
+	val site2 = Site
+	site1.url = "www.baidu.com"
+	println("site1.url = ${site1.url}")
+	println("site2.url = ${site2.url}")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

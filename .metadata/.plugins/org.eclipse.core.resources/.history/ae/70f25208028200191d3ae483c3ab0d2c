@@ -1,0 +1,25 @@
+package com.jiage.mylock;
+/**
+ * 参考：
+ * read模式共享锁，write模式互斥锁，readwrite模式互斥锁
+ *
+ */
+public class MainLock {
+	public static void main(String[] args) {
+		MyReadWriteLock myReadWriteLock = new MyReadWriteLock();
+		// 读读不互斥（共享）
+		// 读写互斥
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				myReadWriteLock.put("a", "fantj_a");
+			}
+		}).start();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println(myReadWriteLock.get("a"));
+			}
+		}).start();
+	}
+}

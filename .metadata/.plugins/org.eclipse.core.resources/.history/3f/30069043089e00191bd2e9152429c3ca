@@ -1,0 +1,28 @@
+package com.aaa.test;
+
+public class AAAmain {
+	public static void main(String[] args) {
+		double[] array = new double[] { 1000, 900, 1100, 1050, 1150 };
+		System.out.println("avarage = " + getAverage(array) + " ,variance =" + getVariance(array));
+
+//		double[] array2 = new double[] { 1050, 1150, 950, 1000, 1200 };
+		double[] array2 = new double[] { 1, 3 };
+		System.out.println("avarage2 = " + getAverage(array2) + " ,variance2 =" + getVariance(array2));
+	}
+
+	public static double getVariance(double[] array) {
+		double sum = 0;
+		for (double d : array) {
+			sum += d * d;
+		}
+		return (sum - array.length * getAverage(array) * getAverage(array)) / array.length;
+	}
+
+	public static double getAverage(double[] array) {
+		double sum = 0;
+		for (double d : array) {
+			sum += d;
+		}
+		return sum / array.length;
+	}
+}

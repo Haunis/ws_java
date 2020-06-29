@@ -1,0 +1,15 @@
+package com.faxing;
+
+public class MyNumber<E> {
+	public <E extends Integer> MyNumber(E e) {
+
+	}
+
+	public <E extends Double> MyNumber(E e) {
+
+	}
+
+	public static void main(String[] args) {
+		MyNumber<Integer> number = new MyNumber<Integer>(3);
+	}
+}

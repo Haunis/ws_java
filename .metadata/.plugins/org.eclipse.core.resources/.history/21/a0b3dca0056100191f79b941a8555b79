@@ -1,0 +1,18 @@
+package com.faxing;
+
+import java.util.List;
+
+public class Utils<T> {
+	public <T extends Fruit>T getFirst(List<T> list) {
+		return list.get(0);
+	}
+
+	// 通配符
+	public T getFirst2(List<? extends T> list) {
+		return list.get(0);
+	}
+
+	public <T extends Fruit> T getFirst3(List<T> list) {
+		return list.get(0);
+	}
+}

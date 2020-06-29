@@ -1,0 +1,59 @@
+package com.jiage.wait;
+
+public class MainWait {
+	static int total = 0;
+
+	public static void main(String[] args) throws InterruptedException {
+		String lock = "a";
+		String lock2 = "b";
+
+		final Thread t1 = new Thread(() -> {
+			synchronized (lock) {
+				System.out.println("t1 等待t2完成计算");
+				// 当前线程A等待
+				try {
+					lock.wait();// 持有lock monitor的此线程等待，并释放锁lock
+//					Thread.currentThread().wait();//java.lang.IllegalMonitorStateException；Thread.currentThread()并无monitor
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("t1 计算的总和是：" + total);
+
+			}
+		});
+
+		final Thread t2 = new Thread(() -> {
+			synchronized (lock) {
+				try {
+					for (int i = 0; i < 100; i++) {
+						total += i;
+						Thread.sleep(20);
+					}
+					// （完成计算了）唤醒在此对象监视器上等待的单个线程，在本例中线程A被唤醒
+					lock.notify();// 唤醒持有lock monitor的线程
+					System.out.println("t2 计算完成");
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		final Thread t3 = new Thread(() -> {
+//			synchronized (t1) {
+			System.out.println("t3 run");
+			try {
+//				t1.join(0);
+				t1.wait();// 不持有锁t1,所以不是t1 monitor的所有者,所以抛异常;使用synchronized即可，并且锁必须是调用wait()的t1;
+				// 若锁是lock2,则lock2.wait()后，无其他地方notify,此线程会一直处于等待状态
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("t3 finish");
+//			}
+		});
+
+		t1.start();
+		t2.start();
+		t3.start();
+	}
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Field"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="com.aaa.test.Bird"/>
+    <fullyQualifiedTypeName name="com.aaa.test.Wing"/>
+    <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="java.lang.Runnable"/>
+    <fullyQualifiedTypeName name="com.jiage.mylock.MyReadWriteLock"/>
+    <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.jiage.classloader.FileClassLoader"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
+    <fullyQualifiedTypeName name="com.jiage.window.WindowTest"/>
+    <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
+    <fullyQualifiedTypeName name="java.awt.event.WindowEvent"/>
+    <fullyQualifiedTypeName name="java.awt.Toolkit"/>
+    <fullyQualifiedTypeName name="java.awt.TextField"/>
+    <fullyQualifiedTypeName name="java.awt.Label"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+</qualifiedTypeNameHistroy>

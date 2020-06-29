@@ -1,0 +1,6 @@
+package com.data_sealed
+
+ class Expression
+//class Constant(val num: Double) : Expression() {}
+//class Sum(val e1: Expression, val e2: Expression) : Expression() {}
+class NotNum : Expression() {}

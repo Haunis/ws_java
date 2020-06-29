@@ -1,0 +1,13 @@
+package com.fanxing
+
+/*
+ 泛型方法
+ */
+
+fun <T> getBox(value: T) = Box(value)
+
+fun main(args: Array<String>) {
+	val intBox = getBox(3)
+	println("intBox : ${intBox.value}");
+
+}

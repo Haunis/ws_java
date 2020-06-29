@@ -1,0 +1,23 @@
+package com.object_declarations
+
+interface TestInterface {
+	fun run()
+}
+
+open class Person(age: Int) {
+	open val age = age;
+}
+
+val PersonExpression: Person = object : Person(17), TestInterface {
+	override val age = 15;
+	override fun run() {
+
+	}
+}
+
+fun main(args: Array<String>) {
+	val personExpression = PersonExpression//error，不可以实例化
+	val age = PersonExpression.age
+	println(personExpression)
+	println(age)
+}

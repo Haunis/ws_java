@@ -1,0 +1,13 @@
+package com.data_sealed
+
+
+sealed class Expression
+class Constant(val num: Double) : Expression() {}
+class Sum(val e1: Expression, val e2: Expression) : Expression() {}
+object NotNum : Expression() {}
+
+fun eval(ex: Expression): Double = when (ex) {
+	is Expression.Constant -> ex.number
+	is Expression.Sum -> eval(ex.e1) + eval(ex.e2)
+
+}

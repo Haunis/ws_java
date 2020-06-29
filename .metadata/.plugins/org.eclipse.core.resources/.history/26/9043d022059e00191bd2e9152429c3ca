@@ -1,0 +1,28 @@
+package com.aaa.test;
+
+import java.io.File;
+import java.util.StringTokenizer;
+
+public class AAAmain {
+	public static void main(String[] args) {
+		double[] array = new double[] { 1000, 900, 1100, 1050, 1150 };
+		double average = getAverage(array);
+
+		double variance = getVariance(array);
+	}
+
+	public static void getVariance(double[] array) {
+		double sum = 0;
+		for (double d : array) {
+			sum += d * d;
+		}
+	}
+
+	public static double getAverage(double[] array) {
+		double sum = 0;
+		for (double d : array) {
+			sum += d;
+		}
+		return sum / array.length;
+	}
+}

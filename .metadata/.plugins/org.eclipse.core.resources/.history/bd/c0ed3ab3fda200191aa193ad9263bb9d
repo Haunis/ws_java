@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+/**
+ * @author haunis
+ *
+ */
+module WindowDemo {
+	requires java.desktop;
+	
+}

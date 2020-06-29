@@ -1,0 +1,71 @@
+package com.jiage.reflect;
+
+public class Wrapper {
+	public final class ClientID {
+		/**
+		 * adas背景
+		 */
+		public static final String BACKGROUND = "app_clientId.background";
+		/**
+		 * 无媒体
+		 */
+		public static final String ACTIVE_DEFAULT = "app_clientId.no_media";
+		/**
+		 * 微信
+		 */
+		public static final String WECHAT = "app_clientId.wechat";
+		/**
+		 * 电话
+		 */
+		public static final String PHONE = "app_clientId.phone";
+		/**
+		 * 客户热线
+		 */
+		public static final String HOTLINE = "app_clientId.hotline";
+		/**
+		 * 外设交互
+		 */
+		public static final String DEVICE_INTERACTION = "app_clientId.outerdevice ";
+		/**
+		 * 地图
+		 */
+		public static final String MAP = "app_clientId.map";
+		/**
+		 * 地图方向导航TBT
+		 */
+		public static final String NAVI_BAR = "app_clientId.map.navi";
+		/**
+		 * 音乐
+		 */
+		public static final String MUSIC = "app_clientId.music";
+		/**
+		 * 有声读物
+		 */
+		public static final String AUDIOBOOK = "app_clientId.audioBook";
+		/**
+		 * FM收音机
+		 */
+		public static final String RADIO = "app_clientId.radio";
+		/**
+		 * 音量调节
+		 */
+		public static final String VOLUME = "app_clientId.volume";
+		/**
+		 * ITouch上边控制栏
+		 */
+		public static final String ITOUCH_CONTROL = "app_clientId.itouch_control";
+		/**
+		 * ITouch空调栏
+		 */
+		public static final String ITOUCH_AIR_CONDITION = "app_clientId.itouch_air_condition";
+		/**
+		 * 用于全局通知用的信号,表示消息发送给所有Client端
+		 */
+		public static final String SIGNAL = "app_clientId.all";
+		/**
+		 * 无效的
+		 */
+		public static final String INVALID = "app_clientId.invalid";
+
+	}
+}

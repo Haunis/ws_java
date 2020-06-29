@@ -1,0 +1,11 @@
+package com.jiage.spinlock;
+
+public class MainTest {
+	public static void main(String[] args) {
+		SpinLock sl = new SpinLock();
+		new Thread(() -> {
+			sl.lock();
+		}).start();
+
+	}
+}

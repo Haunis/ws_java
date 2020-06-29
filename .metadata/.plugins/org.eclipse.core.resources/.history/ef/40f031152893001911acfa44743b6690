@@ -1,0 +1,21 @@
+package com.jiage.spinlock;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853 
+ * 
+ * 公平锁：先排队的先拿到锁
+ *
+ */
+public class TicketLock implements MyLock {
+
+	@Override
+	public void lock() {
+
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

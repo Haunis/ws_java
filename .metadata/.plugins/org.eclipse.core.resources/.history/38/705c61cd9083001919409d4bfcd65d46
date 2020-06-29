@@ -1,0 +1,24 @@
+package com.aaa.test;
+
+public class AAAmain {
+	public static void main(String[] args) {
+		int result = doTest();
+		System.out.println("result=" + result);
+	}
+
+	@SuppressWarnings("finally")
+	private static int doTest() {
+		int i = 100;
+		try {
+			i = 200 / 0;
+			return i;
+		} catch (Exception e) {
+			System.out.println("exception = " + e.toString());
+			System.out.println("this is exception ");
+			return 300;
+		} finally {
+			System.out.println("this is finaly");
+			return 400;
+		}
+	}
+}

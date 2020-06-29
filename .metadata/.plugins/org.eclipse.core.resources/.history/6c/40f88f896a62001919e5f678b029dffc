@@ -1,0 +1,14 @@
+package com.enum_demo
+
+enum class Color {
+	RED,
+	BLUE,
+	GREEN
+
+}
+fun main(args: Array<String>) {
+	val color = Color.RED
+	
+	println(Color.values())
+}
+

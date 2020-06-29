@@ -1,0 +1,23 @@
+package com.jiage.spinlock;
+
+/**
+ * 参考：https://blog.csdn.net/qq_34337272/article/details/81252853
+ * 
+ * 公平锁：先排队的先拿到锁
+ * 
+ * 思路：每个线程都持有一个排号，号码依次增大；持有小号的线程释放锁后，锁传递给持有大号的线程
+ *
+ */
+public class TicketLock implements MyLock {
+	private ThreadLocal 
+	@Override
+	public void lock() {
+
+	}
+
+	@Override
+	public void unLock() {
+
+	}
+
+}

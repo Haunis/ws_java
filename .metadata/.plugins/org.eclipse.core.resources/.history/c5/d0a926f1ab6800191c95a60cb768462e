@@ -1,0 +1,137 @@
+package com.aaa.test;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class AAAmain {
+	public static void main(String[] args) {
+//		byteFileToHex();
+
+		byte[] bytes = new byte[] { -2, 2, 3, 4, 0, 0, 0, 0 };
+		String result = parseByte2HexStr(bytes);
+		System.out.println(result);
+		
+		createNewFile();
+//		test2();
+	}
+
+	public static void byteFileToHex() {
+		try {
+			BufferedReader bfr = new BufferedReader(new FileReader("./data"));
+			String str = null;
+			int lineNumber = 0;
+			while ((str = bfr.readLine()) != null) {
+				lineNumber++;
+//				System.out.println(/* lineNumber + " " + */str);
+				String[] strArray = str.split("  ");
+				byte[] bytess = new byte[strArray.length];
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < strArray.length; i++) {
+					bytess[i] = Byte.parseByte(strArray[i]);
+
+					sb.append(parseByte2HexStr2(bytess[i])).append(" ");
+				}
+//				printByteArray(bytess);
+				System.out.println(sb);
+			}
+			bfr.close();
+		} catch (IOException e) {
+			System.out.println(e.toString());
+		}
+	}
+
+	public static String parseByte2HexStr(byte buf[]) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < buf.length; i++) {
+			String hex = Integer.toHexString(buf[i] & 0xFF);
+			if (hex.length() == 1) {
+				hex = '0' + hex;
+			}
+			sb.append(hex.toUpperCase()).append(" ");
+		}
+		return sb.toString();
+	}
+
+	public static String parseByte2HexStr2(byte b) {
+		StringBuffer sb = new StringBuffer();
+		String hex = Integer.toHexString(b & 0xFF);
+		if (hex.length() == 1) {
+			hex = '0' + hex;
+		}
+		sb.append(hex.toUpperCase());
+		return sb.toString();
+
+	}
+
+	public static void Test() {
+		FileInputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream("./mywork/a.txt");
+//            byte[] bys = new byte[4];
+//            int len = inputStream.read(bys);
+//            System.out.println(new String(bys));  //bcd
+//            System.out.println(len);  //3
+//            System.out.println(inputStream.read(bys));  //-1
+			int len = 0;
+			byte[] bys = new byte[1024];
+			while ((len = inputStream.read(bys)) != -1) {
+				System.out.println(new String(bys, 0, len));
+			}
+			/**
+			 * public String(byte bytes[]) { this(bytes, 0, bytes.length); }
+			 */
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static void createNewFile() {
+//		File file = new File("./mywork/bbb.txt");
+		File file = new File("./ccc.txt");
+
+		if (!file.exists()) {
+			// 先得到文件的上级目录，并创建上级目录，在创建文件
+			file.getParentFile().mkdir();
+			try {
+				// 创建文件
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println(e.toString());
+			}
+		} else {
+			System.out.println("exists ");
+		}
+	}
+
+	private static void printByteArray(byte[] array) {
+		StringBuilder sb = new StringBuilder();
+		for (byte b : array) {
+			sb.append(b).append(" ");
+		}
+		sb.append("-------byteArray");
+		System.out.println(sb.toString());
+
+	}
+
+	private static void printStringArray(String[] array) {
+		StringBuilder sb = new StringBuilder();
+		for (String b : array) {
+			sb.append(b).append(",");
+		}
+		sb.append("-------StringArray");
+		System.out.println(sb.toString());
+
+	}
+
+}

@@ -1,0 +1,12 @@
+package com.faxing;
+
+import java.util.List;
+
+public class MyNumber<E> {
+	public MyNumber(E e) {
+		
+	}
+	public MyNumber getInstance() {
+		return new MyNumber();
+	}
+}
