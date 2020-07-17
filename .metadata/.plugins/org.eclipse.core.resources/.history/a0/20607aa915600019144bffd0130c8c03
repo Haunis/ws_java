@@ -1,4 +1,0 @@
-package com.data_sealed
-
-sealed class Expression
-class Constant(val num: Double) : Expression() {}

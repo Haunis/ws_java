@@ -1,3 +1,0 @@
-package com.data_sealed
-
-sealed class Person

@@ -1,5 +1,0 @@
-package com.jiage.spinlock;
-
-public class ReentrantSpinLock {
-
-}

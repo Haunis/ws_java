@@ -1,8 +1,0 @@
-package com.aaa.test;
-
-
-public class AAAmain {
-	public static void main(String[] args) {
-		System.out.println("this is hello world");
-	}
-}

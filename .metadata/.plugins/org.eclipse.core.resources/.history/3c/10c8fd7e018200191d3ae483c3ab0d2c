@@ -1,7 +1,0 @@
-package com.jiage.mylock;
-
-public class MyReadWriteLock {
-	public static void main(String[] args) {
-		System.out.println(333);
-	}
-}

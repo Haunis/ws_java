@@ -1,7 +1,0 @@
-package com.jiage.atom.field;
-
-public class AtomicIntegerFieldUpdaterDemo {
-	public static class Candinage{
-		
-	}
-}

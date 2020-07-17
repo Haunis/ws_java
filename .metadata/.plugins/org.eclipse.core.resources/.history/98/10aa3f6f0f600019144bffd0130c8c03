@@ -1,9 +1,0 @@
-package com.data_sealed
-
-data class Person(val name: String, val age: Int) {
-}
-
-fun main(args: Array<String>) {
-	val p1: Person = Person("Jack", 22)
-	val p2 = p1.copy("jack333")
-}

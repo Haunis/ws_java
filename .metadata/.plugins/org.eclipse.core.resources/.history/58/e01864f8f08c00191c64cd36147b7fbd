@@ -1,7 +1,0 @@
-package com.jiage.wait;
-
-public class MyThread extends Thread {
-	@Override
-	public void run() {
-	}
-}

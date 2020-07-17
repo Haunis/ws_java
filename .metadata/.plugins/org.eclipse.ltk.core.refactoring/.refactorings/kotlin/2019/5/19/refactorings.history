@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Kotlin/src/com/data_sealed/SealedExpression.kt&apos; to &apos;SealedClass.kt&apos;" description="Rename resource &apos;SealedExpression.kt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/data_sealed/SealedExpression.kt" name="SealedClass.kt" stamp="1557044906338" updateReferences="true"/>
-</session>

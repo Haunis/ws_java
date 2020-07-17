@@ -1,7 +1,0 @@
-package com.fanxing
-
-/*
- 泛型方法
- */
-
-fun <T> getBox(value: T) = Box(value)

@@ -1,8 +1,0 @@
-package com.data_sealed
-
-data class Person(name:String,age:Int) {
-	init{
-		val name = name
-		val age = age
-	}
-}

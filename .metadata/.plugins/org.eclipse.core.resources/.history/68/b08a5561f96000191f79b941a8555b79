@@ -1,7 +1,0 @@
-package com.faxing;
-
-public class Amain {
-	public static void main(String[] args) {
-		System.out.println(333);
-	}
-}

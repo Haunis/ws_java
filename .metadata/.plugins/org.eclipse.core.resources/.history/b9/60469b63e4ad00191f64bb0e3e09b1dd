@@ -1,7 +1,0 @@
-package com.aaa.test;
-
-public class AAAmain {
-	public static void main(String[] args) throws InterruptedException {
-		System.out.println(7 & 2);
-	}
-}
